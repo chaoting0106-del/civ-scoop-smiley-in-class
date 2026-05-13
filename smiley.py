@@ -2,6 +2,7 @@ from vendor.sense_hat import SenseHat
 
 
 class Smiley:
+    
     WHITE = (255, 255, 255)
     GREEN = (0, 255, 0)
     RED = (255, 0, 0)
@@ -9,13 +10,15 @@ class Smiley:
     PINK = (255,0,255)
     BLUE = (0,0,255)
     BLANK = (0, 0, 0)
-
-    def __init__(self):
+    
+    def __init__(self,complexion = YELLOW):
+        self.__complexion = complexion
+        
         self.window_name = f"{self.__class__.__name__} Smiley"
         # We have encapsulated the SenseHat object
         self.sense_hat = SenseHat(window_name=self.window_name)
 
-        Y = self.YELLOW
+        Y = complexion
         G = self.GREEN
         R = self.RED
         W = self.WHITE
@@ -23,15 +26,19 @@ class Smiley:
         P = self.PINK
         O = self.BLANK
         self.pixels = [
-            O, G, G, G, G, G, G, O,
-            P, Y, B, Y, Y, B, Y, P,
-            P, Y, B, Y, Y, B, Y, P,
-            P, Y, Y, Y, Y, Y, Y, P,
-            P, Y, Y, Y, Y, Y, Y, P,
-            P, Y, Y, Y, Y, Y, Y, P,
-            P, Y, Y, Y, Y, Y, Y, P,
-            O, W, W, W, W, W, W, O,
+            O, Y, Y, Y, Y, Y, Y, O,
+            Y, Y, B, Y, Y, B, Y, Y,
+            Y, Y, B, Y, Y, B, Y, Y,
+            Y, Y, Y, Y, Y, Y, Y, Y,
+            Y, Y, Y, Y, Y, Y, Y, Y,
+            Y, Y, Y, Y, Y, Y, Y, Y,
+            Y, Y, Y, Y, Y, Y, Y, Y,
+            O, Y, Y, Y, Y, Y, Y, O,
         ]
+        # Add a property to access the complexion
+        @property
+        def complexion(self):
+            return self.__complexion
 
     def dim_display(self, dimmed=True):
         """
