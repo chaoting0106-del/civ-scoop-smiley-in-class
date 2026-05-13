@@ -8,7 +8,7 @@ class Angry(Smiley, Blinkable):
    Provides a Smiley with a angry expression
     """
     def __init__(self):
-        super().__init__()
+        super().__init__(Smiley.RED)
 
         self.draw_mouth()
         self.draw_eyes()
@@ -17,7 +17,7 @@ class Angry(Smiley, Blinkable):
         """
        Renders a mouth by blanking the pixels that form that object.
         """
-        mouth = [41, 54, 50, 43, 52, 45]
+        mouth = [41, 46, 50, 51, 52, 53]
         for pixel in mouth:
             self.pixels[pixel] = self.BLANK
 
@@ -31,7 +31,7 @@ class Angry(Smiley, Blinkable):
             if wide_open:
                 eyes = self.BLANK
             else:
-                eyes = self.RED
+                eyes = self.PINK
             self.pixels[pixel] = eyes
 
     def blink(self, delay=0.25):
